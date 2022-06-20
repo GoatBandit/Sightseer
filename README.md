@@ -1,0 +1,2 @@
+# Sightseer
+A system monitor.
