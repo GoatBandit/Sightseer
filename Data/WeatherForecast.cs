@@ -1,6 +1,6 @@
 using System;
 
-namespace Plandit.Data
+namespace Sightseer.Data
 {
     public class WeatherForecast
     {

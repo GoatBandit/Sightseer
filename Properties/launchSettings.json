@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:16600",
-      "sslPort": 44376
+      "applicationUrl": "http://localhost:12597",
+      "sslPort": 44348
     }
   },
   "profiles": {
@@ -14,6 +14,7 @@
       "commandLineArgs": "start",
       "workingDirectory": "."
     },
+
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
@@ -21,7 +22,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Plandit": {
+    "Sightseer": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
@@ -29,7 +30,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-      
     }
   }
 }

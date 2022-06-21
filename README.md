@@ -1,2 +1,1 @@
-# Sightseer
-A system monitor.
+# Plandit

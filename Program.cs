@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ElectronNET.API;
 
-namespace Plandit
+namespace Sightseer
 {
     public class Program
     {
@@ -18,10 +18,11 @@ namespace Plandit
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
+            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder=>
             {
                 webBuilder.UseElectron(args);
                 webBuilder.UseStartup<Startup>();
             });
+
     }
 }

@@ -1,15 +1,15 @@
 {
-  "executable": "Plandit",
+  "executable": "Sightseer",
   "splashscreen": {
     "imageFile": ""
   },
-  "name": "Plandit",
+  "name": "Sightseer",
   "author": "",
   "singleInstance": false,
   "environment": "Production",
   "build": {
-    "appId": "com.Plandit.app",
-    "productName": "Plandit",
+    "appId": "com.Sightseer.app",
+    "productName": "Sightseer",
     "copyright": "Copyright © 2020",
     "buildVersion": "1.0.0",
     "compression": "maximum",

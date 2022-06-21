@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Plandit.Data
+namespace Sightseer.Data
 {
     public class WeatherForecastService
     {
