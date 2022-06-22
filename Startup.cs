@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -23,11 +22,9 @@ namespace Sightseer
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,21 +46,27 @@ namespace Sightseer
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapRazorPages();
             });
 
             if (HybridSupport.IsElectronActive)
             {
-                ElectronBootstrap();
+                CreateWindow();
             }
         }
 
-        async void ElectronBootstrap()
+        async void CreateWindow()
         {
-            await Electron.WindowManager.CreateWindowAsync();
+            var window = await Electron.WindowManager.CreateWindowAsync();
+
+            window.OnClosed += () =>
+            {
+                Electron.App.Quit();
+            };
         }
     }
 }
