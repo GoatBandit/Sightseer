@@ -14,14 +14,15 @@ namespace Sightseer.Pages
     {
         public List<Process> Processes { get; set; }
 
-        // SPECIFIC TO WINDOWS
-        private PerformanceCounter cpuCounter = null;
-        private PerformanceCounter ramCounter = null;
+        // Ensure only one timer is running
+        private protected static bool running;
+
+        // SPECIFIC TO WINDOWS 
+        private PerformanceCounter cpuCounter = new PerformanceCounter("Processor Information", "% Processor Time", "_Total");
+        private PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
 
         public float cpuUsage;
-        public string ramUsage;
-
-        private protected static bool running;
+        // public string ramUsage;
 
         private readonly ILogger<IndexModel> _logger;
 
@@ -34,10 +35,6 @@ namespace Sightseer.Pages
         {
             var items = Process.GetProcesses().Where(p => !String.IsNullOrEmpty(p.ProcessName) && !p.ProcessName.Contains("handle="));
             Processes = items.ToList();
-            
-            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-
-            // TimerFunction(); 
 
             if (!running)
             {
@@ -48,9 +45,6 @@ namespace Sightseer.Pages
         private void InitCounters()
         {
             running = true;
-
-            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            ramCounter = new PerformanceCounter("Memory", "Available MBytes", String.Empty);
             
             int seconds = 2 * 1000;
             var timer = new Timer(timerTick, null, 0, seconds);
@@ -59,7 +53,7 @@ namespace Sightseer.Pages
         private void timerTick(Object sender)
         {
             cpuUsage = cpuCounter.NextValue();
-            ramUsage = String.Format("{0} MB", ramCounter.NextValue());
+            // ramUsage = String.Format("{0} MB", ramCounter.NextValue());
 
             Console.WriteLine(cpuUsage + "%");
         }
@@ -68,26 +62,5 @@ namespace Sightseer.Pages
         {
             return cpuUsage;
         }
-
-
-
-
-
-
-        // private void TimerFunction()
-        // {
-        //     int seconds = 1 * 1000;
-        //     var timer = new Timer(TimerFunc, null, 0, seconds);
-        // }
-
-        // void TimerFunc(object objectInfo)
-        // {
-        //     cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            
-        //     var first = cpuCounter.NextValue();
-        //     Thread.Sleep(2500);
-        //     cpuUsage = cpuCounter.NextValue()+"%";
-        //     Console.WriteLine(cpuUsage);
-        // }
     }
 }
