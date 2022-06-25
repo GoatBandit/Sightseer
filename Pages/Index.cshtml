@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+@* <meta http-equiv="refresh" content="2" />  *@
 <div class="text-center">
-   @Model.getCPUUsage()
+   <p id="cpu">@Model.getCPU()%</p>
+   @DateTime.Now.ToString()
+
+    <button type="button" onclick="document.getElementById('cpu').style.innerHTML=@Model.getCPU()">Click Me!</button>
 
     <table id="myTable" class="table table-sm table-striped">
         <thead class="thead-dark">
