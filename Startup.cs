@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ElectronNET.API;
+using ElectronNET.API.Entities;
 
 namespace Sightseer
 {
@@ -61,7 +62,19 @@ namespace Sightseer
 
         async void CreateWindow()
         {
-            var window = await Electron.WindowManager.CreateWindowAsync();
+            // var window = await Electron.WindowManager.CreateWindowAsync();
+
+            var window = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
+            {
+                Width = 1000,
+                Height = 750,
+                Show = false
+            });
+
+            await window.WebContents.Session.ClearCacheAsync();
+
+            window.OnReadyToShow += () => window.Show();
+            window.SetTitle("Sightseer");
 
             window.OnClosed += () =>
             {
