@@ -16,35 +16,35 @@
 
 // setInterval(greet, 1000);
 
-const osu = require('node-os-utils')
-const cpu = osu.cpu
+// const osu = require('node-os-utils')
+// const cpu = osu.cpu
 
-// Run every 2 seconds
-setInterval(() =>
-{
-    // CPU Usage
-    cpu.usage().then((info) =>
-    {
-        document.getElementById('cpu-usage').innerText = info + '%';
+// // Run every 2 seconds
+// setInterval(() =>
+// {
+//     // CPU Usage
+//     cpu.usage().then((info) =>
+//     {
+//         document.getElementById('cpu-usage').innerText = info + '%';
 
-        document.getElementById('cpu-progress').style.width = info + '%';
+//         document.getElementById('cpu-progress').style.width = info + '%';
 
-        // Make progress bar red if overload
-        if (info >= cpuOverload)
-        {
-            document.getElementById('cpu-progress').style.background = 'red'
-        } else
-        {
-            document.getElementById('cpu-progress').style.background = '#30c88b'
-        }
+//         // Make progress bar red if overload
+//         if (info >= cpuOverload)
+//         {
+//             document.getElementById('cpu-progress').style.background = 'red'
+//         } else
+//         {
+//             document.getElementById('cpu-progress').style.background = '#30c88b'
+//         }
 
-        localStorage.setItem('lastNotify', +new Date())
+//         localStorage.setItem('lastNotify', +new Date())
 
-        console.log("Hola");
-    })
-  })
+//         console.log("Hola");
+//     })
+//   })
 
-cpu.free().then((info) =>
-{
-    document.getElementById('cpu-free').innerText = info + '%'
-})
+// cpu.free().then((info) =>
+// {
+//     document.getElementById('cpu-free').innerText = info + '%'
+// })

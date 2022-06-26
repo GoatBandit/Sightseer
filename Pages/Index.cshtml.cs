@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Threading;
+using ElectronNET.API;
 
 namespace Sightseer.Pages
 {
@@ -40,6 +41,14 @@ namespace Sightseer.Pages
             {
                 InitCounters();
             }
+
+            test();
+        }
+
+        private async void test()
+        {
+            Console.WriteLine(Electron.HostHook.CallAsync<string>("redraw") + "AHAHAHAHAs"); 
+            // var resultFromTypeScript = await Electron.HostHook.CallAsync<object>("showOpenDialogMain");
         }
 
         private void InitCounters()
